@@ -1,8 +1,9 @@
 using UnityEngine;
+using Utils.Pooling;
 
 namespace Main
 {
-    public class PipeMove : MonoBehaviour
+    public class PipeMove : PooledMonoBehaviour
     {
     
         [SerializeField]
