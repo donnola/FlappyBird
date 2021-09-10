@@ -29,9 +29,6 @@ namespace Main
         private int CurrentPipeID = 0;
         private float spawnX = 13f;
         
-        
-        private SceneAsset m_UIScene;
-    
         private void Awake()
         {
             GameObject m_Pipe = GameAssets.GetInstance().Pipe;
@@ -40,7 +37,7 @@ namespace Main
             {
                 PipesArray[i] = Instantiate(m_Pipe, PoolPosition, Quaternion.identity);
             }
-            m_UIScene = GameAssets.GetInstance().UIScene;
+            SceneAsset m_UIScene = GameAssets.GetInstance().UIScene;
             if (PlayerPrefs.HasKey("SavedMaxScore"))
             {
                 m_MaxScore = PlayerPrefs.GetInt("SavedMaxScore");
