@@ -54,7 +54,6 @@ namespace Main
         {
             if (collision.transform.CompareTag("Obstruction"))
             {
-                audioSource2.pitch = Random.Range(0.9f, 1.1f);
                 audioSource2.PlayOneShot(m_DieSound);
                 Game.die();
             }
