@@ -1,6 +1,3 @@
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 using UnityEngine;
 using System;
 using System.Collections;
@@ -28,11 +25,12 @@ namespace Main
         private int PoolSize = 5;
         private GameObject[] PipesArray;
         private Vector2 PoolPosition = new Vector2(-15f, -25f);
-        private int CurrentPipeID = 0;
+        private int CurrentPipeID;
         private float spawnX = 13f;
         
         private void Awake()
         {
+            Time.timeScale = 0f;
             GameObject m_Pipe = GameAssets.GetInstance().Pipe;
             PipesArray = new GameObject[PoolSize];
             for (int i = 0; i < PoolSize; i++)
@@ -47,15 +45,14 @@ namespace Main
             {
                 m_MaxScore = 0;
             }
-            m_Score = 0;
-            GetPoint?.Invoke(m_Score);
             SceneManager.LoadScene("Scenes/UI", LoadSceneMode.Additive);
         }
     
         private void Start()
         {
+            m_Score = 0;
             m_IsDie = false;
-            Time.timeScale = 0f;
+            GetPoint?.Invoke(m_Score);
             StartCoroutine(GeneratePipes());
         }
     

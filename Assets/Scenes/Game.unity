@@ -130,6 +130,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6663609537411064249, guid: a56a18a48d8634c43be0cd0edd50f53d, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6663609537411064249, guid: a56a18a48d8634c43be0cd0edd50f53d, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6663609537411064249, guid: a56a18a48d8634c43be0cd0edd50f53d, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6663609537411064249, guid: a56a18a48d8634c43be0cd0edd50f53d, type: 3}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2647553134357941169, guid: a56a18a48d8634c43be0cd0edd50f53d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -481,7 +497,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Pipe: {fileID: 5705705141529044554, guid: e2f46642089e7d842a0e2301e9af4994, type: 3}
-  m_UIScene: {fileID: 102900000, guid: eb501eb05f919c848bbfa534910148dd, type: 3}
 --- !u!1 &2018065852
 GameObject:
   m_ObjectHideFlags: 0
