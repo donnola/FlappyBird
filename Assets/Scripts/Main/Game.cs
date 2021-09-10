@@ -34,8 +34,8 @@ namespace Main
     
         private void Awake()
         {
-            PipesArray = new GameObject[PoolSize];
             GameObject m_Pipe = GameAssets.GetInstance().Pipe;
+            PipesArray = new GameObject[PoolSize];
             for (int i = 0; i < PoolSize; i++)
             {
                 PipesArray[i] = Instantiate(m_Pipe, PoolPosition, Quaternion.identity);
@@ -44,6 +44,10 @@ namespace Main
             if (PlayerPrefs.HasKey("SavedMaxScore"))
             {
                 m_MaxScore = PlayerPrefs.GetInt("SavedMaxScore");
+            }
+            else
+            {
+                m_MaxScore = 0;
             }
             m_Score = 0;
             GetPoint?.Invoke(m_Score);

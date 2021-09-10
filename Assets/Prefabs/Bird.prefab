@@ -135,3 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 8
+  m_DieSound: {fileID: 8300000, guid: 7660cc60ab79e48489ffa8e822e6a40b, type: 3}
+  m_WingSound: {fileID: 8300000, guid: 138f715d3841956469fd824d2567df6a, type: 3}
+  m_PointSound: {fileID: 8300000, guid: 85cff46460f54ed4999555d5fecbdcf5, type: 3}
