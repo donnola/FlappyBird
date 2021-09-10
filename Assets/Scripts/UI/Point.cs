@@ -12,7 +12,7 @@ namespace UI
         private void OnEnable()
         {
             Game.GetPoint += ChangeMark;
-            ChangeMark(Game.Point);
+            ChangeMark(Game.Score);
         }
 
         private void OnDisable()

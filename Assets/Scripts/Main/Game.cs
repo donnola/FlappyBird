@@ -13,28 +13,30 @@ namespace Main
         public static event Action<int> GetPoint;
         public static event Action<bool> EndGame; 
         public static event Action<bool> StartGame; 
-        private static int m_Point;
+        
+        private static int m_Score;
+        public static int Score => m_Score;
+
         private static int m_MaxScore;
+        public static int MaxScore => m_MaxScore;
+        
         private static bool m_IsDie;
         public static bool IsDie => m_IsDie;
     
-        public static int MaxScore => m_MaxScore;
-        public static int Point => m_Point;
-
-        private GameObject m_Pipe;
+        private int PoolSize = 5;
         private GameObject[] PipesArray;
-        private int currentPipeID = 0;
-        private int poolSize = 5;
-        private float spawnX = 13f;
         private Vector2 PoolPosition = new Vector2(-15f, -25f);
+        private int CurrentPipeID = 0;
+        private float spawnX = 13f;
+        
         
         private SceneAsset m_UIScene;
     
         private void Awake()
         {
-            PipesArray = new GameObject[poolSize];
-            m_Pipe = GameAssets.GetInstance().Pipe;
-            for (int i = 0; i < poolSize; i++)
+            PipesArray = new GameObject[PoolSize];
+            GameObject m_Pipe = GameAssets.GetInstance().Pipe;
+            for (int i = 0; i < PoolSize; i++)
             {
                 PipesArray[i] = Instantiate(m_Pipe, PoolPosition, Quaternion.identity);
             }
@@ -43,8 +45,8 @@ namespace Main
             {
                 m_MaxScore = PlayerPrefs.GetInt("SavedMaxScore");
             }
-            m_Point = 0;
-            GetPoint?.Invoke(m_Point);
+            m_Score = 0;
+            GetPoint?.Invoke(m_Score);
             SceneManager.LoadScene(m_UIScene.name, LoadSceneMode.Additive);
         }
     
@@ -63,11 +65,11 @@ namespace Main
             while (true)
             {
                 float spawnY = Random.Range(-1.5f, 2.7f);
-                PipesArray[currentPipeID].transform.position = new Vector2(spawnX, spawnY);
-                currentPipeID++;
-                if (currentPipeID >= poolSize)
+                PipesArray[CurrentPipeID].transform.position = new Vector2(spawnX, spawnY);
+                CurrentPipeID++;
+                if (CurrentPipeID >= PoolSize)
                 {
-                    currentPipeID = 0;
+                    CurrentPipeID = 0;
                 }
 
                 yield return new WaitForSeconds(1f);
@@ -77,16 +79,16 @@ namespace Main
         public static void get_point()
         {
             Debug.Log("Point!");
-            ++m_Point;
-            GetPoint?.Invoke(m_Point);
+            ++m_Score;
+            GetPoint?.Invoke(m_Score);
         }
         public static void die()
         {
             m_IsDie = true;
             Time.timeScale = 0f;
-            if (m_Point > m_MaxScore)
+            if (m_Score > m_MaxScore)
             {
-                m_MaxScore = m_Point;
+                m_MaxScore = m_Score;
             }
             PlayerPrefs.SetInt("SavedMaxScore", Game.MaxScore);
             PlayerPrefs.Save();
