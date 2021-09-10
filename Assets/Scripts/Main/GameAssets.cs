@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 namespace Main
@@ -9,9 +8,6 @@ namespace Main
 
         [SerializeField] private GameObject m_Pipe; 
         public GameObject Pipe => m_Pipe;
-        
-        [SerializeField] private SceneAsset m_UIScene;
-        public SceneAsset UIScene => m_UIScene;
 
         public static GameAssets GetInstance()
         {

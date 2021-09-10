@@ -1,6 +1,8 @@
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using System;
-using UnityEditor;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -37,7 +39,6 @@ namespace Main
             {
                 PipesArray[i] = Instantiate(m_Pipe, PoolPosition, Quaternion.identity);
             }
-            SceneAsset m_UIScene = GameAssets.GetInstance().UIScene;
             if (PlayerPrefs.HasKey("SavedMaxScore"))
             {
                 m_MaxScore = PlayerPrefs.GetInt("SavedMaxScore");
@@ -48,7 +49,7 @@ namespace Main
             }
             m_Score = 0;
             GetPoint?.Invoke(m_Score);
-            SceneManager.LoadScene(m_UIScene.name, LoadSceneMode.Additive);
+            SceneManager.LoadScene("Scenes/UI", LoadSceneMode.Additive);
         }
     
         private void Start()
