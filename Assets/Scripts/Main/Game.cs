@@ -3,6 +3,8 @@ using System;
 using UnityEditor;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
+
 
 namespace Main
 {
@@ -20,11 +22,22 @@ namespace Main
         public static int Point => m_Point;
 
         private GameObject m_Pipe;
+        private GameObject[] PipesArray;
+        private int currentPipeID = 0;
+        private int poolSize = 5;
+        private float spawnX = 13f;
+        private Vector2 PoolPosition = new Vector2(-15f, -25f);
+        
         private SceneAsset m_UIScene;
     
         private void Awake()
         {
+            PipesArray = new GameObject[poolSize];
             m_Pipe = GameAssets.GetInstance().Pipe;
+            for (int i = 0; i < poolSize; i++)
+            {
+                PipesArray[i] = Instantiate(m_Pipe, PoolPosition, Quaternion.identity);
+            }
             m_UIScene = GameAssets.GetInstance().UIScene;
             if (PlayerPrefs.HasKey("SavedMaxScore"))
             {
@@ -47,13 +60,17 @@ namespace Main
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0));
             StartGame?.Invoke(true);
             Time.timeScale = 1f;
-            Vector2 position;
-            while(true)
+            while (true)
             {
-                position = transform.position;
-                position.x += 14f;
-                Instantiate(m_Pipe, position, Quaternion.identity);
-                yield return new WaitForSeconds(1.0F);
+                float spawnY = Random.Range(-1.5f, 2.7f);
+                PipesArray[currentPipeID].transform.position = new Vector2(spawnX, spawnY);
+                currentPipeID++;
+                if (currentPipeID >= poolSize)
+                {
+                    currentPipeID = 0;
+                }
+
+                yield return new WaitForSeconds(1f);
             }
         }
     
