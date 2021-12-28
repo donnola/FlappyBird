@@ -21,13 +21,11 @@ namespace UI
         public void SaveScore()
         {
             Game.save_score(m_ScoreName);
-            SceneManager.LoadScene("Scenes/Game");
         }
 
         public void DeleteScore()
         {
             Game.delete_score();
-            SceneManager.LoadScene("Scenes/Game");
         }
 
         public static void InputName(InputField userInput)
