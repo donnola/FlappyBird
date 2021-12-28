@@ -16,9 +16,12 @@ namespace Main
         private static int m_Score;
         public static int Score => m_Score;
 
-        private static int m_MaxScore;
+        private static int m_MaxScore = 0;
         public static int MaxScore => m_MaxScore;
-        
+
+        private static string m_ScoreName = "";
+        public static string ScoreName => m_ScoreName;
+
         private static bool m_IsDie;
         public static bool IsDie => m_IsDie;
     
@@ -41,9 +44,9 @@ namespace Main
             {
                 m_MaxScore = PlayerPrefs.GetInt("SavedMaxScore");
             }
-            else
+            if (PlayerPrefs.HasKey("SetNameScore"))
             {
-                m_MaxScore = 0;
+                m_ScoreName = PlayerPrefs.GetString("SetNameScore");
             }
             SceneManager.LoadScene("Scenes/UI", LoadSceneMode.Additive);
         }
@@ -85,14 +88,26 @@ namespace Main
         {
             m_IsDie = true;
             Time.timeScale = 0f;
-            if (m_Score > m_MaxScore)
-            {
-                m_MaxScore = m_Score;
-            }
-            PlayerPrefs.SetInt("SavedMaxScore", Game.MaxScore);
-            PlayerPrefs.Save();
             EndGame?.Invoke(true);
             Debug.Log("Die!");
+        }
+
+        public static void save_score(string name)
+        {
+            m_MaxScore = m_Score;
+            m_ScoreName = name;
+            PlayerPrefs.SetInt("SavedMaxScore", m_MaxScore);
+            PlayerPrefs.SetString("SetNameScore", m_ScoreName);
+            PlayerPrefs.Save();
+        }
+
+        public static void delete_score()
+        {
+            m_MaxScore = 0;
+            m_ScoreName = "";
+            PlayerPrefs.SetInt("SavedMaxScore", m_MaxScore);
+            PlayerPrefs.SetString("SetNameScore", m_ScoreName);
+            PlayerPrefs.Save();
         }
         
     }

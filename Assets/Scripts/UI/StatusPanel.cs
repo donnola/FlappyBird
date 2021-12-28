@@ -21,8 +21,8 @@ namespace UI
             m_GameStatusPanel.SetActive(false);
             if (Game.MaxScore > 0)
             {
-                m_MaxScoreStart.text = $"Ваш рекорд : {Game.MaxScore}";
-                m_MaxScoreGame.text = $"Ваш рекорд : {Game.MaxScore}";
+                m_MaxScoreStart.text = $"Рекорд {Game.ScoreName}: {Game.MaxScore}";
+                m_MaxScoreGame.text = $"Рекорд {Game.ScoreName}: {Game.MaxScore}";
             }
             else
             {
