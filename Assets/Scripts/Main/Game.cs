@@ -11,7 +11,7 @@ namespace Main
     {
         public static event Action<int> GetPoint;
         public static event Action<bool> EndGame; 
-        public static event Action<bool> StartGame; 
+        public static event Action<bool> StartGame;
         
         private static int m_Score;
         public static int Score => m_Score;
