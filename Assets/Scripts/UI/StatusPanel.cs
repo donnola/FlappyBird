@@ -33,15 +33,15 @@ namespace UI
 
         private void OnEnable()
         {
-            Game.StartGame += ActivateEndPanel;
+            Game.StartGame += ActivateStatusPanel;
         }
     
         private void OnDisable()
         {
-            Game.StartGame -= ActivateEndPanel;
+            Game.StartGame -= ActivateStatusPanel;
         }
 
-        private void ActivateEndPanel(bool start)
+        private void ActivateStatusPanel(bool start)
         {
             m_StartStatusPanel.SetActive(false);
             m_GameStatusPanel.SetActive(true);
