@@ -55,7 +55,7 @@ namespace Main
             if (collision.transform.CompareTag("Obstruction"))
             {
                 audioDie.PlayOneShot(m_DieSound);
-                Game.die();
+                Game.Die();
             }
         }
 
@@ -65,7 +65,7 @@ namespace Main
             {
                 audioPoint.pitch = Random.Range(0.9f, 1.1f);
                 audioPoint.PlayOneShot(m_PointSound);
-                Game.get_point();
+                Game.AddPoint();
             }
         }
     }

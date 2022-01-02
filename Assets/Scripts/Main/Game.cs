@@ -78,13 +78,13 @@ namespace Main
             }
         }
     
-        public static void get_point()
+        public static void AddPoint()
         {
             Debug.Log("Point!");
             ++m_Score;
             GetPoint?.Invoke(m_Score);
         }
-        public static void die()
+        public static void Die()
         {
             m_IsDie = true;
             Time.timeScale = 0f;
@@ -92,7 +92,7 @@ namespace Main
             Debug.Log("Die!");
         }
 
-        public static void save_score(string name)
+        public static void SaveScore(string name)
         {
             m_MaxScore = m_Score;
             m_ScoreName = name;
@@ -101,7 +101,7 @@ namespace Main
             PlayerPrefs.Save();
         }
 
-        public static void delete_score()
+        public static void DeleteScore()
         {
             m_MaxScore = 0;
             m_ScoreName = "";

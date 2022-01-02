@@ -20,12 +20,12 @@ namespace UI
 
         public void SaveScore()
         {
-            Game.save_score(m_ScoreName);
+            Game.SaveScore(m_ScoreName);
         }
 
         public void DeleteScore()
         {
-            Game.delete_score();
+            Game.DeleteScore();
         }
 
         public static void InputName(InputField userInput)
